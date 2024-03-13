@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class UnitState
 {
+    [SerializeField] protected UnitData _unitData;
 
     protected void ChangeState()
     {

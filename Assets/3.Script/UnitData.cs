@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Unit Data", menuName = "Scriptable Object/Unit Data", order = int.MaxValue)]
 
-public class Unit_Data : ScriptableObject
+public class UnitData : ScriptableObject
 {
     // ¿Ã∏ß
     [SerializeField] private string _unitName;
