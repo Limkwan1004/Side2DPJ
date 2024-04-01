@@ -1,34 +1,35 @@
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
-public interface IHPObserver
+public interface IHealthObserver
 {
-    void OnHPChanged(float newHealth);
+    void OnHealthChanged(float newHealth);
 }
 
-public class HP_Observer
+public class HealthObserver
 {
     private float _hp = 0f;
 
-    private List<IHPObserver> _observers = new List<IHPObserver>();
+    private List<IHealthObserver> _observers = new List<IHealthObserver>();
 
     // 관찰자를 등록
-    public void AddObserver(IHPObserver observer)
+    public void AddObserver(IHealthObserver observer)
     {
         _observers.Add(observer);
     }
 
     // 관찰자를 해제
-    public void RemoveObserver(IHPObserver observer)
+    public void RemoveObserver(IHealthObserver observer)
     {
         _observers.Remove(observer);
     }
 
     // 관찰자에게 체력을 알림
-    public void NotifyObsever()
+    private void NotifyObsever()
     {
         foreach (var observer in _observers)
         {
-            observer.OnHPChanged(_hp);
+            observer.OnHealthChanged(_hp);
         }
     }
 
