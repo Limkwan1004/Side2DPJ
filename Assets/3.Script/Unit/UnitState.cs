@@ -5,7 +5,12 @@ using UnityEngine;
 
 public abstract class UnitState
 {
-    [SerializeField] protected UnitData _unitData;
+    [SerializeField] protected Unit _unit;
+
+    private void Start()
+    {
+        
+    }
 
     protected void ChangeState()
     {
