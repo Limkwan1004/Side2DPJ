@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatProficiency : Skill
 {
-    int n;
+
     public override void Act()
     {
     }
