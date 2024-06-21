@@ -17,8 +17,7 @@ public class UnitDefaultData : ScriptableObject
     // 마법 공격력
     [SerializeField] private float _ap;
     public float AP { get { return _ap; } }
-
-    // 공격속도
+    
     [SerializeField] private float _as;
     public float AS { get { return _as; } }
 
