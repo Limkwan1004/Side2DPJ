@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    public static GameManager Instance = null;
+    public static PlayerManager Instance = null;
+
+    public UnitData _UnitData;
 
     private void Awake()
     {
@@ -14,9 +15,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            return;
-        }
+        else return;
     }
 }
