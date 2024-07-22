@@ -2,28 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitData
+public abstract class Unit : MonoBehaviour
 {
-    private string _Name;
-    private float _HP;
-    private float _MP;
-    private float _AD;
-    private float _AP;
-    private float _AS;
-    private float _DF;
-    private float _SP;
+    [SerializeField] private UnitData _unitData = new UnitData();
+
+    private UnitState _unitState;
 
 
-}
-
-public class Unit : MonoBehaviour
-{
-    [SerializeField] private UnitDefaultData _defaultData;
-    public UnitData unitData;
-
-    private void Awake()
+    private float _hp;
+    public float _Hp
     {
+        get { return _hp; }
+        set
+        {
+            _hp = value;
+            if (_hp <= 0)
+            {
+                // Á×´Â ÇÔ¼ö
+            }
+        }
+    }
+
+
+    public virtual void ChangeState(UnitState unitState)
+    {
+        _unitState = unitState;
 
     }
+
+    protected void SetData()
+    {
+        UnitInfo _unitInfo = new UnitInfo(_unitData.NAME, _unitData.PSA, _unitData.MGA, _unitData.ATS, _unitData.CRT, _unitData.AVD, _unitData.ACC,
+            _unitData.DEF, _unitData.HP, _unitData.MP, _unitData.SP, _unitData.LV);
+    }
+
 
 }
