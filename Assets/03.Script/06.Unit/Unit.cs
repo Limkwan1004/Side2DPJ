@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DefineManager;
 
 public abstract class Unit : MonoBehaviour
 {
     [SerializeField] private UnitData _unitData = new UnitData();
 
-    private UnitState _unitState;
+    private UnitDefine.UnitState _unitState = UnitDefine.UnitState.Idle;
 
 
     private float _hp;
@@ -18,22 +19,39 @@ public abstract class Unit : MonoBehaviour
             _hp = value;
             if (_hp <= 0)
             {
-                // Á×´Â ÇÔ¼ö
+                ChangeState(UnitDefine.UnitState.Die);
             }
         }
     }
 
-
-    public virtual void ChangeState(UnitState unitState)
+    private void Start()
     {
-        _unitState = unitState;
+        SetUnitData();
+    }
+
+    public virtual void ChangeState(UnitDefine.UnitState unitState)
+    {
+        if (unitState == _unitState)
+            return;
+
+        switch (_unitState)
+        {
+            case UnitDefine.UnitState.None:
+                break;
+            case UnitDefine.UnitState.Idle:
+                break;
+            case UnitDefine.UnitState.Hit:
+                break;
+            case UnitDefine.UnitState.Die:
+                break;
+        }
 
     }
 
-    protected void SetData()
+    protected void SetUnitData()
     {
-        UnitInfo _unitInfo = new UnitInfo(_unitData.NAME, _unitData.PSA, _unitData.MGA, _unitData.ATS, _unitData.CRT, _unitData.AVD, _unitData.ACC,
-            _unitData.DEF, _unitData.HP, _unitData.MP, _unitData.SP, _unitData.LV);
+        UnitDefine.UnitInfo _unitInfo = new UnitDefine.UnitInfo(_unitData.NAME, _unitData.PHYSICALATTACK, _unitData.MAGICALATTACK, _unitData.ATTACKSPEED, _unitData.CRITICAL,
+            _unitData.AVOID, _unitData.ACCURACY, _unitData.DEFENSE, _unitData.HP, _unitData.MP, _unitData.SPEED, _unitData.LEVEL);
     }
 
 
